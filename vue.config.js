@@ -1,6 +1,6 @@
 module.exports = {
     publicPath: './',
-    productionSourceMap: false,
+    productionSourceMap: true,
     outputDir: "dist",
     chainWebpack: config => {
         config.module
@@ -29,12 +29,13 @@ module.exports = {
                 return args
             })
         config.optimization.minimizer('terser').tap((args) => {
-            args[0].terserOptions.compress.drop_console = true //删除打印
-            args[0].terserOptions.compress.drop_debugger = true
-            args[0].terserOptions.compress.pure_funcs = ['console.log'] // 移除console.log方法
+            args[0].terserOptions.compress.drop_console = false //删除打印
+            args[0].terserOptions.compress.drop_debugger = false
+            //args[0].terserOptions.compress.pure_funcs = ['console.log'] // 移除console.log方法
             args[0].terserOptions.output = { comments: false } //删除所有注释
             args[0].extractComments = false //是否将注释全部集中到一个文件中
             return args
         })
+        config.devtool('source-map')
     }
 }

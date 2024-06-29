@@ -1008,6 +1008,7 @@ export default {
       }
     },
     getItemList(blueprintData) {
+      console.log(blueprintData);
       if (!blueprintData || !blueprintData.buildings) return [];
       let itemsCount = {};
       blueprintData.buildings.forEach((v) => {
@@ -1913,6 +1914,7 @@ export default {
             return;
           }
           let inputData = this.formInline.inputData.trim();
+                  console.log(inputData);
           let blueprintData;
           if (this.formInline.dataType == "blueprint") {
             try {
